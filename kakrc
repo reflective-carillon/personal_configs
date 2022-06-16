@@ -41,8 +41,8 @@ hook global ModeChange .*:insert %{
 
 hook global ModeChange insert:.* %{
     unset-face window PrimaryCursor
-    unset-face window PrimaryCursorEol
     unset-face window PrimarySelection
+    unset-face window PrimaryCursorEol
     unset-face window SecondaryCursor
     unset-face window SecondaryCursorEol
     unset-face window SecondarySelection
@@ -52,7 +52,7 @@ hook global ModeChange insert:.* %{
 
 #  `                                     (-) (=) <=
 # [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
-#        a*  r   s   t   g  [h   j   k   l]  o    '*
+#        a*  r   s   t   g  [h   j   k   l]  o    '
 #          x   c [d/y* p]  z [k*](m)  ,   .   /
 #                      [____________]
 
@@ -61,11 +61,15 @@ hook global ModeChange insert:.* %{
 # [...]  related adjacent overwritten keys are grouped together.
 #  (f)   free for future use. (f) and (m) are there just in case
 #        they're useful but might be changed later.
-#   *    iregular change
+#   *    irregular change
 
 # ` unchanged
-map global normal <tab> <c-n>
-map global normal <s-tab> <c-p>
+map global insert <tab> <c-n>
+map global insert <s-tab> <c-p>
+map global normal <tab> n
+map global normal <a-tab> <a-n>
+map global normal <s-tab> N
+map global normal <s-a-tab> <a-N>
 
 # q unchanged
 # w unchanged
@@ -73,9 +77,15 @@ map global normal f e # word nav.
 map global normal F E # yes this is backwards, but it
 map global normal p b # puts e in the location of qwerty e
 map global normal P B
+map global normal <a-f> <a-e>
+map global normal <a-F> <a-E>
+map global normal <a-p> <a-b>
+map global normal <a-P> <a-B>
 # b free but put f here for now
 map global normal b f
 map global normal B F
+map global normal <a-b> <a-f> 
+map global normal <a-B> <a-F>
 map global normal j <a-j>
 map global normal J <a-J>
 map global normal l u # same location as qwerty u
@@ -126,16 +136,11 @@ map global normal <'> "<a-;>"
 # {} unchanged
 # [] unchanged
 map global normal <backspace> <a-d>
-map global insert <c-backspace> "<a-;>b<a-;><a-d>"
-# map global insert <c-backspace> doesn't work. TODO
+map global insert <a-backspace> "<a-;>b<a-;><a-d>"
 
 # home unchanged
-map global normal <pageup> "<a-x>dk<home>Pk<end>" # move selection up 1 line
-map global normal <pagedown> "<a-x>djPk<end>"     # move selection down 1 line
+map global normal <pageup> '<a-x>"bdk<home>"bPk<end>' # move selection up
+map global normal <pagedown> '<a-x>"bdj<home>"bPk<end>' # or down 1 line
 # end unchanged
 # delete free
-
-
-
-
 
