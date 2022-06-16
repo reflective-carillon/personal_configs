@@ -141,8 +141,20 @@ map global normal H M
 # <space> unchanged
 
 # home unchanged
-map global normal <pageup> '<a-x>"bdk<home>"bPk<s-end>' # move selection up
-map global normal <pagedown> '<a-x>"bdj<home>"bPk<s-end>' # or down 1 line
+
+# Move selection up or down 1 line
+# Uses registers b and m.
+map global normal <pageup> '<a-x>"mZ<a-:><a-;>k<a-x>"bd"mz"bp"mz'
+#   <a-x>"mZ   select full lines and store the selection in register m.
+#   <a-:><a-;> make sure the cursor is at the beginning
+#   k<a-x>     select the line above the original selection
+#   "bd        and store it in register b
+#   "mz        restore the original selection
+#   "bp        paste the line that was above, now below
+#   "mz        restore the original selection again
+map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
+#   Same as above but taking the line below and putting it above.
+
 # end unchanged
 # delete free
 
