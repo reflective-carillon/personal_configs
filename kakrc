@@ -28,7 +28,7 @@ define-command -docstring "save and quit" x "write-all; quit"
 
 # From discuss.kakoune.com/u/Scriwtapello
 
-## Change the background color depending on the mode
+## Change the cursor color depending on the mode
 
 hook global ModeChange .*:insert %{
     set-face window PrimaryCursor black,rgb:11dd00
@@ -50,35 +50,38 @@ hook global ModeChange insert:.* %{
 
 # My mapping, for Colemak-DHm
 
-#  `                                (-) (=) <=
-#  q  [z] [w   e] (b)<a-j>[u] [i   a]  ;   \
-#   [a*](r)  s   t   g  [h   j   k   l]<a-;>[x]
-#     [d   y   P   R*  p]<a-k>(h)  ,   .   /
-#                  [____________]
+#  `                                     (-) (=) <=
+# [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
+#        a*  r   s   t   g  [h   j   k   l]  o    '
+#          x   c [d/y* p]  z [k*](m)  ,   .   /
+#                      [____________]
 
 #   q    unchanged
-#  [z]   functions as z does by default
+#  [u]   overwrites the Colemak letter
 # [...]  related adjacent overwritten keys are grouped together.
-#  (b)   free for future use
-# <a-j>  functions as <a-j> does by default. J functions as <a-J> too.
-#   *    irregular change.  a is <a-i>, A is <a-a>. <a-v> is v.
+#  (f)   free for future use. (f) and (m) are there just in case
+#        they're useful but might be changed later.
+#   *    iregular change
+
+# ` unchanged
+map global normal <tab> <c-n>
+map global normal <s-tab> <c-p>
 
 # q unchanged
-map global normal w z
-map global normal W Z
-
-map global normal f b # word nav
-map global normal F B
-map global normal p e
-map global normal P E
-# b free
-# ` unchanged
-#
-# j unchanged
+# w unchanged
+map global normal f e # word nav.
+map global normal F E # yes this is backwards, but it
+map global normal p b # puts e in the location of qwerty e
+map global normal P B
+# b free but put f here for now
+map global normal b f
+map global normal B F
+map global normal j <a-j>
+map global normal J <a-J>
 map global normal l u # same location as qwerty u
 map global normal L U
 map global normal u i # same location as qwerty i
-map global normal L I
+map global normal U I
 map global normal y a # to the right of i
 map global normal Y A
 # ; unchanged
@@ -90,9 +93,6 @@ map global normal A <a-a>
 # s unchanged
 # t unchanged
 # g unchanged
-map global insert <tab> <c-n>
-map global insert <s-tab> <c-p>
-#
 map global normal m h
 map global normal M H
 map global normal n j
@@ -101,31 +101,28 @@ map global normal e k
 map global normal E K
 map global normal i l
 map global normal I L
-map global normal o "<a-;>"
-map global normal O "<a-:>"
-map global normal <'> <a-x>
+# o unchanged
+# ' unchanged
 
-map global normal x d
-map global insert <c-x> "<a-;>d"
-map global normal c y
-map global insert <c-c> "<a-;>y"
-map global normal d P
-map global insert <c-d> "<a-;>P"
-map global normal v R
-map global insert <c-v> "<a-;>R"
-map global normal z p
-map global insert <c-z> "<a-;>p"
-
+# x unchanged
+# c unchanged
+# d (lowercase) unchanged
+map global normal D y
+map global normal v p
+map global normal V P
 map global normal <a-v> v
 map global normal <s-a-v> <c-v>
+# z unchanged 
 
-# esc unchanged
-# return unchanged
-# k unchanged
-# h free
+map global normal k <a-k>
+map global normal K <a-K>
+# h free but put m here for now
+map global normal h m
+map global normal H M
 # , unchanged
 # . unchanged
 # / unchanged
+map global normal <'> "<a-;>"
 # {} unchanged
 # [] unchanged
 map global normal <backspace> <a-d>
