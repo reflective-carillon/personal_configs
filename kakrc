@@ -52,7 +52,7 @@ hook global ModeChange insert:.* %{
 
 #  `                                     (-) (=) <=
 # [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
-#        a*  r   s   t   g  [h   j   k   l]  o    '
+#        a*  r   s   t   g  [h   j   k   l]  o    '*
 #          x   c [d/y* p]  z [k*](m)  ,   .   /
 #                      [____________]
 
