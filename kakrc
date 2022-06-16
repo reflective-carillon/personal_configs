@@ -64,6 +64,11 @@ hook global ModeChange insert:.* %{
 #   *    irregular change
 
 # ` unchanged
+# _ unchanged, - free
+# = free
+map global normal <backspace> <a-d>
+map global insert <a-backspace> "<a-;>b<a-;><a-d>"
+
 map global insert <tab> <c-n>
 map global insert <s-tab> <c-p>
 map global normal <tab> n
@@ -95,6 +100,8 @@ map global normal U I
 map global normal y a # to the right of i
 map global normal Y A
 # ; unchanged
+# [] unchanged
+# {} unchanged
 # \ unchanged
 
 map global normal a <a-i>
@@ -112,7 +119,7 @@ map global normal E K
 map global normal i l
 map global normal I L
 # o unchanged
-# ' unchanged
+map global normal <'> "<a-;>"
 
 # x unchanged
 # c unchanged
@@ -123,7 +130,6 @@ map global normal V P
 map global normal <a-v> v
 map global normal <s-a-v> <c-v>
 # z unchanged 
-
 map global normal k <a-k>
 map global normal K <a-K>
 # h free but put m here for now
@@ -132,15 +138,11 @@ map global normal H M
 # , unchanged
 # . unchanged
 # / unchanged
-map global normal <'> "<a-;>"
-# {} unchanged
-# [] unchanged
-map global normal <backspace> <a-d>
-map global insert <a-backspace> "<a-;>b<a-;><a-d>"
+# <space> unchanged
 
 # home unchanged
-map global normal <pageup> '<a-x>"bdk<home>"bPk<end>' # move selection up
-map global normal <pagedown> '<a-x>"bdj<home>"bPk<end>' # or down 1 line
+map global normal <pageup> '<a-x>"bdk<home>"bPk<s-end>' # move selection up
+map global normal <pagedown> '<a-x>"bdj<home>"bPk<s-end>' # or down 1 line
 # end unchanged
 # delete free
 
