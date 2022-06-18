@@ -65,7 +65,8 @@ hook global ModeChange insert:.* %{
 
 # ` unchanged
 # _ unchanged, - free
-# = free
+map global normal = ": comment-line<ret>"
+# + free
 map global normal <backspace> <a-d>
 map global insert <a-backspace> "<a-;>b<a-;><a-d>"
 
@@ -157,4 +158,37 @@ map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
 
 # end unchanged
 # delete free
+
+# Prose
+
+hook global BufCreate .+\.md %{ set buffer filetype md }
+hook global BufSetOption filetype=md %{
+    set-option buffer comment_line '//'
+}
+map global user h ": show-comment-headings<ret>"
+
+# For each block of // comments, used for organizing writing
+# and storing notes, extract the first line and show it with
+# its line number. Set user-h to jump to that heading in the document.
+define-command show-comment-headings %{
+    # registers:
+    # n = name of original buffer to go back to
+    # b = contents of scratch buffer (comment headings)
+    # l = line to go to in the original buffer
+    set-register n "%val{bufname}"
+    set-register b %sh{
+       # Prepend line numbers. Keep only the first of adjacent comment lines.
+       # Filter to keep only comment lines.
+       eval "cat -n $kak_buffile | uniq --skip-chars=7 --check-chars=2 | egrep '^\s*[0-9]*\s//' 2>&1"
+    }
+    edit -scratch *comment-headings*
+    exec '%<a-d>"bPgg'
+    map buffer user h "H\;e<a-i>n""ly:<space>buffer<space><c-r>n<ret>:<space>exec<space><c-r>lg<ret>"
+    # H\;       Go to the beginning of the line with no selection.
+    # e<a-i>n   Select the line number.
+    # "ly       Save the line number in register l.
+    # : buffer  Go to a buffer...
+    # <c-r>n<ret>                the original buffer.
+    # : exec #g Go to line #, using <c-r>l to fill in the line number.
+}
 
