@@ -193,12 +193,12 @@ map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
 map global user -docstring 'evaluate math and append result after " = "' m '_"by|bc<ret><a-:>"mZi<space>=<space><esc>hhh"bP"mzl'
 # register b holds the text of selection
 # register m holds the selection position
-# _ 		trim the selection
-# "by   	store it in register b
+# _         trim the selection
+# "by       store it in register b
 # |bc<ret>  do the math with the `bc` command on the shell, overwriting the selection
 # <a-:>"mZ  store the position of the result, selected with the cursor on the right
 # i<space>=<space><esc>    prepend " = "
-# hhh 		move to before the " = "
+# hhh       move to before the " = "
 # "bP       paste the original math expression
 # "mzl      select the result again and move to just after the result
 
