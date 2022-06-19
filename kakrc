@@ -5,6 +5,7 @@ hook global InsertChar \. %{ try %{
   exec -draft hH <a-k>,\.<ret> d
   exec -with-hooks <esc>
 }}
+
 hook global InsertChar , %{ try %{
   exec -draft hH <a-k>\.,<ret> d
   exec -with-hooks <esc>
@@ -222,7 +223,7 @@ define-command show-comment-headings %{
     set-register b %sh{
        # Prepend line numbers. Keep only the first of adjacent comment lines.
        # Filter to keep only comment lines.
-       eval "cat -n $kak_buffile | uniq --skip-chars=7 --check-chars=2 | egrep '^\s*[0-9]*\s//' 2>&1"
+       eval 'cat -n $kak_buffile | uniq --skip-chars=7 --check-chars=2 | egrep "^\s*[0-9]*\s$kak_opt_comment_line" 2>&1'
     }
     edit -scratch *comment-headings*
     exec '%<a-d>"bPgg'
