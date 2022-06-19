@@ -101,6 +101,7 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 map global normal = ": comment-line<ret>"
 # + free
 map global normal <backspace> <a-d>
+map global normal <a-backspace> "b<a-d>"
 map global insert <a-backspace> "<a-;>b<a-;><a-d>"
 
 # from https://github.com/mawww/config/blob/master/kakrc
@@ -216,8 +217,7 @@ hook global BufSetOption filetype=md %{
 }
 map global user -docstring 'show comment headings; repeat command to return to chosen heading' h ": show-comment-headings<ret>"
 
-# For each block of // comments, used for organizing writing
-# and storing notes, extract the first line and show it with
+# For each block of comments, extract the first line and show it with
 # its line number. Set user-h to jump to that heading in the document.
 define-command show-comment-headings %{
     # registers:
@@ -228,6 +228,10 @@ define-command show-comment-headings %{
     set-register b %sh{
        # Prepend line numbers. Keep only the first of adjacent comment lines.
        # Filter to keep only comment lines.
+       # Comment lines are assumed to have 2 chars in common, since comment
+       # line strings are usually either 2 chars ("//", "--") or 1 char ("#").
+       # If the comment string is 1 char, comparing on 2 chars should still be
+       # safe since it's good style to put a space before the text of the comment.
        eval 'cat -n $kak_buffile | uniq --skip-chars=7 --check-chars=2 | egrep "^\s*[0-9]*\s$kak_opt_comment_line" 2>&1'
     }
     edit -scratch *comment-headings*
@@ -239,5 +243,6 @@ define-command show-comment-headings %{
     # : buffer  Go to a buffer...
     # <c-r>n<ret>                the original buffer.
     # : exec #g Go to line #, using <c-r>l to fill in the line number.
+    map buffer user q ": buffer<c-r>n<ret>" # go back to the original buffer
 }
 
