@@ -76,6 +76,11 @@ hook global ModeChange insert:.* %{
     unset-face window SecondarySelection
 }
 
+# from https://github.com/mawww/config/blob/master/kakrc
+define-command find -menu -params 1 -shell-script-candidates %{ ag -g '' --ignore "$kak_opt_ignored_files" } %{ edit %arg{1} }
+
+define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
+
 # My mapping, for Colemak-DHm
 
 #  `                                     (-) (=*) <=
