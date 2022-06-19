@@ -9,6 +9,33 @@ hook global InsertChar , %{ try %{
   exec -draft hH <a-k>\.,<ret> d
   exec -with-hooks <esc>
 }}
+# vz/zv
+hook global InsertChar v %{ try %{
+  exec -draft hH <a-k>zv<ret> d
+  exec -with-hooks <esc>
+}}
+hook global InsertChar z %{ try %{
+  exec -draft hH <a-k>vz<ret> d
+  exec -with-hooks <esc>
+}}
+# xv/vx
+hook global InsertChar v %{ try %{
+  exec -draft hH <a-k>xv<ret> d
+  exec -with-hooks <esc>
+}}
+hook global InsertChar x %{ try %{
+  exec -draft hH <a-k>vx<ret> d
+  exec -with-hooks <esc>
+}}
+# xz/zx
+hook global InsertChar x %{ try %{
+  exec -draft hH <a-k>zx<ret> d
+  exec -with-hooks <esc>
+}}
+hook global InsertChar z %{ try %{
+  exec -draft hH <a-k>xz<ret> d
+  exec -with-hooks <esc>
+}}
 
 # From https://kakoune-editor.github.io/community-articles/2021/01/01/first_two_hours_in_two_minutes.html
 
@@ -70,8 +97,10 @@ map global normal = ": comment-line<ret>"
 map global normal <backspace> <a-d>
 map global insert <a-backspace> "<a-;>b<a-;><a-d>"
 
-map global insert <tab> <c-n>
-map global insert <s-tab> <c-p>
+# from https://github.com/mawww/config/blob/master/kakrc
+hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
 map global normal <tab> n
 map global normal <a-tab> <a-n>
 map global normal <s-tab> N
@@ -159,13 +188,27 @@ map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
 # end unchanged
 # delete free
 
+# Math
+
+map global user -docstring 'evaluate math and append result after " = "' m '_"by|bc<ret><a-:>"mZi<space>=<space><esc>hhh"bP"mzl'
+# register b holds the text of selection
+# register m holds the selection position
+# _ 		trim the selection
+# "by   	store it in register b
+# |bc<ret>  do the math with the `bc` command on the shell, overwriting the selection
+# <a-:>"mZ  store the position of the result, selected with the cursor on the right
+# i<space>=<space><esc>    prepend " = "
+# hhh 		move to before the " = "
+# "bP       paste the original math expression
+# "mzl      select the result again and move to just after the result
+
 # Prose
 
 hook global BufCreate .+\.md %{ set buffer filetype md }
 hook global BufSetOption filetype=md %{
     set-option buffer comment_line '//'
 }
-map global user h ": show-comment-headings<ret>"
+map global user -docstring 'show comment headings; repeat command to return to chosen heading' h ": show-comment-headings<ret>"
 
 # For each block of // comments, used for organizing writing
 # and storing notes, extract the first line and show it with
