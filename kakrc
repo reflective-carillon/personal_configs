@@ -5,11 +5,11 @@ hook global InsertChar \. %{ try %{
   exec -draft hH <a-k>,\.<ret> d
   exec -with-hooks <esc>
 }}
-
 hook global InsertChar , %{ try %{
   exec -draft hH <a-k>\.,<ret> d
   exec -with-hooks <esc>
 }}
+
 # vz/zv
 hook global InsertChar v %{ try %{
   exec -draft hH <a-k>zv<ret> d
@@ -48,8 +48,8 @@ set-option global indentwidth 4
 add-highlighter global/ wrap -word -indent
 
 ## Clipboard
-map -docstring "yank the selection into the clipboard" global user c "<a-|> xsel -i<ret>"
-map -docstring "paste from the clipboard" global user v "<a-!> xsel<ret>"
+map -docstring "yank the selection into the clipboard" global user c "<a-|> xsel --clipboard -i<ret>"
+map -docstring "paste from the clipboard" global user v "<a-!> xsel --clipboard<ret>"
 
 ## Shortcut to quickly exit the editor
 define-command -docstring "save and quit" x "write-all; quit"
@@ -78,7 +78,7 @@ hook global ModeChange insert:.* %{
 
 # My mapping, for Colemak-DHm
 
-#  `                                     (-) (=) <=
+#  `                                     (-) (=*) <=
 # [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
 #        a*  r   s   t   g  [h   j   k   l]  o    '*
 #          x   c [d/y* p]  z [k*](m)  ,   .   /
