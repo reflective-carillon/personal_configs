@@ -158,14 +158,17 @@ map global normal I L
 # o unchanged
 map global normal <'> "<a-;>"
 
-# x unchanged
+map global normal x <a-x> # swap alt and non-alt functions of x
+map global normal X <a-X>
+map global normal <a-x> x
+map global normal <a-X> X
 # c unchanged
 # d (lowercase) unchanged
 map global normal D y
-map global normal v p
+map global normal v p # I don't use view mode very often.
 map global normal V P
-map global normal <a-v> v
-map global normal <s-a-v> <c-v>
+map global normal <a-v> <a-p>
+map global normal <a-V> <a-P>
 # z unchanged 
 map global normal k <a-k>
 map global normal K <a-K>
