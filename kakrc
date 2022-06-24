@@ -83,10 +83,10 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 
 # My mapping, for Colemak-DHm
 
-#  `                                     (-) (=*) <=
+#  `                                     (-) (=*) <=*
 # [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
 #        a*  r   s   t   g  [h   j   k   l]  o    '*
-#          x   c [d/y* p]  z [k*](m)  ,   .   /
+#          x*  c [d/y* p]  z [k*](m)  ,   .   /
 #                      [____________]
 
 #   q    unchanged
@@ -162,7 +162,7 @@ map global normal x <a-x> # swap alt and non-alt functions of x
 map global normal X <a-X>
 map global normal <a-x> x
 map global normal <a-X> X
-# c unchanged
+# c free, C unchanged
 # d (lowercase) unchanged
 map global normal D y
 map global normal v p # I don't use view mode very often.
@@ -181,6 +181,7 @@ map global normal H M
 # <space> unchanged
 
 # home unchanged
+# end unchanged
 
 # Move selection up or down 1 line
 # Uses registers b and m.
@@ -195,7 +196,6 @@ map global normal <pageup> '<a-x>"mZ<a-:><a-;>k<a-x>"bd"mz"bp"mz'
 map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
 #   Same as above but taking the line below and putting it above.
 
-# end unchanged
 # delete free
 
 # Math
