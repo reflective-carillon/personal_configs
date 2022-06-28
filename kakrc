@@ -253,9 +253,9 @@ define-command show-comment-headings %{
 # Uses the o buffer.
 # Not intended for multiple selections. 
 map global user w '|wc<ret>"oyu: info ''<c-r>o''<ret>'
-# |wc<ret>				replace the selection with the `wc` output
-# "oy       		    store the output in the o buffer
-# u 					undo the pipe, restoring the original selection
-# : info '<c-r>o'<ret> 	display the `wc` output
+# |wc<ret>              replace the selection with the `wc` output
+# "oy                   store the output in the o buffer
+# u                     undo the pipe, restoring the original selection
+# : info '<c-r>o'<ret>  display the `wc` output
 
 
