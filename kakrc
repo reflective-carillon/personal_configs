@@ -217,6 +217,11 @@ map global user -docstring 'evaluate math and append result after " = "' m '_"by
 hook global BufCreate .+\.md %{ set buffer filetype md }
 hook global BufSetOption filetype=md %{
     set-option buffer comment_line '//'
+    hook buffer BufWritePost .* %{
+        nop %sh{
+            npx prettier --prose-wrap always --write "$kak_buffile" &
+        }
+    }
 }
 map global user -docstring 'show comment headings; repeat command to return to chosen heading' h ": show-comment-headings<ret>"
 
