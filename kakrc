@@ -257,10 +257,20 @@ define-command show-comment-headings %{
 # Word Count
 # Uses the o buffer.
 # Not intended for multiple selections. 
-map global user w '|wc<ret>"oyu: info ''<c-r>o''<ret>'
+map global user -docstring 'wc' <#> '|wc<ret>"oyu: info ''<c-r>o''<ret>'
 # |wc<ret>              replace the selection with the `wc` output
 # "oy                   store the output in the o buffer
 # u                     undo the pipe, restoring the original selection
 # : info '<c-r>o'<ret>  display the `wc` output
 
+# Convenient copy/paste shortcuts with non-default buffers.
+
+map global user -docstring '"sd' s '"sd'
+map global user -docstring '"sy' S '"sy'
+map global user -docstring '"sp' t '"sp'
+map global user -docstring '"sP' T '"sP'
+map global user -docstring '"fd' f '"fd'
+map global user -docstring '"fy' F '"fy'
+map global user -docstring '"fp' p '"fp'
+map global user -docstring '"fP' P '"fP'
 
