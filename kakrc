@@ -274,3 +274,9 @@ map global user -docstring '"fy' F '"fy'
 map global user -docstring '"fp' p '"fp'
 map global user -docstring '"fP' P '"fP'
 
+# Code Formatting
+
+hook global BufSetOption filetype=ocaml %{
+   map buffer user -docstring "format file (ocamlformat)" r '"mZ%%|ocamlformat - --enable-outside-detected-project --name "$kak_buffile" || echo "error, check *debug*"<ret>"mz'
+}
+
