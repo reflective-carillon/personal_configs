@@ -117,7 +117,7 @@ map global normal <s-a-tab> <a-N>
 # w unchanged
 map global normal f e # word nav.
 map global normal F E # yes this is backwards, but it
-# p unchanged
+# p unchanged         # puts e in the location of qwerty e
 # P unchanged
 map global normal <a-f> <a-e>
 map global normal <a-F> <a-E>
