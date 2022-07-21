@@ -117,8 +117,8 @@ map global normal <s-a-tab> <a-N>
 # w unchanged
 map global normal f e # word nav.
 map global normal F E # yes this is backwards, but it
-map global normal p b # puts e in the location of qwerty e
-map global normal P B
+# p unchanged
+# P unchanged
 map global normal <a-f> <a-e>
 map global normal <a-F> <a-E>
 map global normal <a-p> <a-b>
@@ -165,8 +165,8 @@ map global normal <a-X> X
 # c free, C unchanged
 # d (lowercase) unchanged
 map global normal D y
-map global normal v p # I don't use view mode very often.
-map global normal V P
+# v unchanged
+# V unchanged
 map global normal <a-v> <a-p>
 map global normal <a-V> <a-P>
 # z unchanged 
