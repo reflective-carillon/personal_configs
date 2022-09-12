@@ -159,6 +159,8 @@ map global normal N J
 map global normal e k
 map global normal E K
 map global normal i l
+map global user -docstring 'view mode' i v
+map global user -docstring 'lock view mode' I V
 map global normal I L
 # o unchanged
 map global normal <'> "<a-;>"
@@ -172,8 +174,6 @@ map global normal <a-X> X
 map global normal D y
 map global normal v p
 map global normal V P
-map global user -docstring 'view mode' v v
-map global user -docstring 'lock view mode' V V
 map global normal <a-v> <a-p>
 map global normal <a-V> <a-P>
 # z unchanged 
