@@ -9,7 +9,10 @@ hook global InsertChar , %{ try %{
   exec -draft hH <a-k>\.,<ret> d
   exec -with-hooks <esc>
 }}
-
+# Also allow this to work in normal mode.
+map global user , <esc>
+map global user . <esc>
+map global user / . # keep a way to repeat
 # vz/zv
 hook global InsertChar v %{ try %{
   exec -draft hH <a-k>zv<ret> d
@@ -84,9 +87,9 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 # My mapping, for Colemak-DHm
 
 #  `                                     (-) (=*) <=*
-# [*]  q   w  [e   b] (f) [j*][u] [i   a*]  ;   \
+# [*]  q   w   e   p   b  [j*][u] [i   a*]  ;   \
 #        a*  r   s   t   g  [h   j   k   l]  o    '*
-#          x*  c [d/y* p]  z [k*](m)  ,   .   /
+#          x*  c  d/y* p   z [k*](m)  ,   .   /
 #                      [____________]
 
 #   q    unchanged
@@ -121,13 +124,7 @@ map global normal F E # yes this is backwards, but it
 # P unchanged
 map global normal <a-f> <a-e>
 map global normal <a-F> <a-E>
-map global normal <a-p> <a-b>
-map global normal <a-P> <a-B>
-# b free but put f here for now
-map global normal b f
-map global normal B F
-map global normal <a-b> <a-f> 
-map global normal <a-B> <a-F>
+# b unchanged
 map global normal j <a-j>
 map global normal J <a-J>
 map global normal l u # same location as qwerty u
@@ -176,7 +173,7 @@ map global normal K <a-K>
 map global normal h m
 map global normal H M
 # , unchanged
-# . unchanged
+map global normal . ,
 # / unchanged
 # <space> unchanged
 
