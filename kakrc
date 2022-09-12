@@ -87,9 +87,9 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 # My mapping, for Colemak-DHm
 
 #  `                                     (-) (=*) <=*
-# [*]  q   w   e   p   b  [j*][u] [i   a*]  ;   \
+# [*]  q   w   e  [t]  b  [j*][u] [i   a*]  ;   \
 #        a*  r   s   t   g  [h   j   k   l]  o    '*
-#          x*  c  d/y* p   z [k*](m)  ,   .   /
+#          x*  c  d/y*[p]  z [k*](m)  ,   .   /
 #                      [____________]
 
 #   q    unchanged
@@ -120,8 +120,12 @@ map global normal <s-a-tab> <a-N>
 # w unchanged
 map global normal f e # word nav.
 map global normal F E # yes this is backwards, but it
-# p unchanged         # puts e in the location of qwerty e
-# P unchanged
+                      # puts e in the location of qwerty e
+map global normal p <a-t> # see note below on p and t
+map global normal P <a-T>
+map global normal <a-p> <a-f>
+map global normal <a-P> <a-F>
+map global normal <c-p> <c-u>
 map global normal <a-f> <a-e>
 map global normal <a-F> <a-E>
 # b unchanged
@@ -142,7 +146,11 @@ map global normal a <a-i>
 map global normal A <a-a>
 # r unchanged
 # s unchanged
-# t unchanged
+map global normal t t # see note below on p and t
+map global normal T T
+map global normal <a-t> f
+map global normal <a-T> F
+map global normal <c-t> <c-d>
 # g unchanged
 map global normal m h
 map global normal M H
@@ -162,8 +170,10 @@ map global normal <a-X> X
 # c free, C unchanged
 # d (lowercase) unchanged
 map global normal D y
-# v unchanged
-# V unchanged
+map global normal v p
+map global normal V P
+map global user -docstring 'view mode' v v
+map global user -docstring 'lock view mode' V V
 map global normal <a-v> <a-p>
 map global normal <a-V> <a-P>
 # z unchanged 
@@ -179,6 +189,12 @@ map global normal . ,
 
 # home unchanged
 # end unchanged
+
+# Note on p and t:
+# These keys, which are vertically adjacent on Colemak, form a pair.
+# p/t selects to a character backwards or forwards. P/T extends.
+# Alt p/t selects to a character, including that character. Alt P/T extends.
+# Ctrl p/t scrolls by half pages.
 
 # Move selection up or down 1 line
 # Uses registers b and m.
