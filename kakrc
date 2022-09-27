@@ -89,7 +89,7 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 #  `                                     (-) (=*) <=*
 # [*]  q   w   e  [t]  b  [j*][u] [i   a*]  ;   \
 #        a*  r   s   t   g  [h   j   k   l]  o    '*
-#          x*  c  d/y*[p]  z [k*](m)  ,   .   /
+#          x   c  d/y*[p]  z [k*](m)  ,   .   /
 #                      [____________]
 
 #   q    unchanged
@@ -165,10 +165,7 @@ map global normal I L
 # o unchanged
 map global normal <'> "<a-;>"
 
-map global normal x <a-x> # swap alt and non-alt functions of x
-map global normal X <a-X>
-map global normal <a-x> x
-map global normal <a-X> X
+# x unchanged
 # c free, C unchanged
 # d (lowercase) unchanged
 map global normal D y
