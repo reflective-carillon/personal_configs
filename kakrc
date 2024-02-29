@@ -44,7 +44,7 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 # My mapping, for Colemak-DHm
 
 #  `                                     (-) (=*) <=*
-# [*]  q   w   e  [t]  b   j   l   u  [a*]  ;   \
+# [*]  q   w   e  [t]  b   j   l   u   y    ;   \
 #        a*  r   s   t   g   m   n   e   i   o    '*
 #          x   c  d/y*[p]  z  k   h   ,   .   /
 #                      [____________]
@@ -88,8 +88,7 @@ map global normal <a-F> <a-E>
 # j unchanged
 # l unchanged
 # u unchanged
-map global normal y a # to the right of i
-map global normal Y A
+# y unchanged
 # ; unchanged
 # [] unchanged
 # {} unchanged
@@ -126,7 +125,7 @@ map global normal <a-V> <a-P>
 # k unchanged
 # h unchanged
 # , unchanged
-map global normal . ,
+# . unchanged
 # / unchanged
 # <space> unchanged
 
