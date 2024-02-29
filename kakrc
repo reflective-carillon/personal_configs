@@ -1,46 +1,3 @@
-# escape with ",." or ".,"
-# Since either order works, you can press them
-# "simultaneously" as a chord!
-hook global InsertChar \. %{ try %{
-  exec -draft hH <a-k>,\.<ret> d
-  exec -with-hooks <esc>
-}}
-hook global InsertChar , %{ try %{
-  exec -draft hH <a-k>\.,<ret> d
-  exec -with-hooks <esc>
-}}
-# Also allow this to work in normal mode.
-map global user , <esc>
-map global user . <esc>
-map global user / . # keep a way to repeat
-# vz/zv
-hook global InsertChar v %{ try %{
-  exec -draft hH <a-k>zv<ret> d
-  exec -with-hooks <esc>
-}}
-hook global InsertChar z %{ try %{
-  exec -draft hH <a-k>vz<ret> d
-  exec -with-hooks <esc>
-}}
-# xv/vx
-hook global InsertChar v %{ try %{
-  exec -draft hH <a-k>xv<ret> d
-  exec -with-hooks <esc>
-}}
-hook global InsertChar x %{ try %{
-  exec -draft hH <a-k>vx<ret> d
-  exec -with-hooks <esc>
-}}
-# xz/zx
-hook global InsertChar x %{ try %{
-  exec -draft hH <a-k>zx<ret> d
-  exec -with-hooks <esc>
-}}
-hook global InsertChar z %{ try %{
-  exec -draft hH <a-k>xz<ret> d
-  exec -with-hooks <esc>
-}}
-
 # From https://kakoune-editor.github.io/community-articles/2021/01/01/first_two_hours_in_two_minutes.html
 
 ## Width of a tab
@@ -210,12 +167,12 @@ map global normal <pagedown> '<a-x>"mZ<a-:>j<a-x>"bd"mz"bP"mz'
 
 # Math
 
-map global user -docstring 'evaluate math and append result after " = "' m '_"by|bc<ret><a-:>"mZi<space>=<space><esc>hhh"bP"mzl'
+map global user -docstring 'evaluate math and append result after " = "' m '_"by|bc<space>-l<ret><a-:>"mZi<space>=<space><esc>hhh"bP"mzl'
 # register b holds the text of selection
 # register m holds the selection position
 # _         trim the selection
 # "by       store it in register b
-# |bc<ret>  do the math with the `bc` command on the shell, overwriting the selection
+# |bc<space>-l<ret>  do the math with the `bc -l` command on the shell, overwriting the selection
 # <a-:>"mZ  store the position of the result, selected with the cursor on the right
 # i<space>=<space><esc>    prepend " = "
 # hhh       move to before the " = "
