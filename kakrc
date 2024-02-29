@@ -44,14 +44,13 @@ define-command mkdir %{ nop %sh{ mkdir -p $(dirname $kak_buffile) } }
 # My mapping, for Colemak-DHm
 
 #  `                                     (-) (=*) <=*
-# [*]  q   w   e  [t]  b  [j*][u] [i   a*]  ;   \
-#        a*  r   s   t   g  [h   j   k   l]  o    '*
-#          x   c  d/y*[p]  z [k*](m)  ,   .   /
+# [*]  q   w   e  [t]  b   j   l   u  [a*]  ;   \
+#        a*  r   s   t   g   m   n   e   i   o    '*
+#          x   c  d/y*[p]  z  k   h   ,   .   /
 #                      [____________]
 
 #   q    unchanged
 #  [u]   overwrites the Colemak letter
-# [...]  related adjacent overwritten keys are grouped together.
 #  (f)   free for future use. (f) and (m) are there just in case
 #        they're useful but might be changed later.
 #   *    irregular change
@@ -86,12 +85,9 @@ map global normal <c-p> <c-u>
 map global normal <a-f> <a-e>
 map global normal <a-F> <a-E>
 # b unchanged
-map global normal j <a-j>
-map global normal J <a-J>
-map global normal l u # same location as qwerty u
-map global normal L U
-map global normal u i # same location as qwerty i
-map global normal U I
+# j unchanged
+# l unchanged
+# u unchanged
 map global normal y a # to the right of i
 map global normal Y A
 # ; unchanged
@@ -109,16 +105,12 @@ map global normal <a-t> f
 map global normal <a-T> F
 map global normal <c-t> <c-d>
 # g unchanged
-map global normal m h
-map global normal M H
-map global normal n j
-map global normal N J
-map global normal e k
-map global normal E K
-map global normal i l
+# m unchanged
+# n unchanged
+# e unchanged
+# i unchanged
 map global user -docstring 'view mode' i v
 map global user -docstring 'lock view mode' I V
-map global normal I L
 # o unchanged
 map global normal <'> "<a-;>"
 
@@ -130,12 +122,9 @@ map global normal v p
 map global normal V P
 map global normal <a-v> <a-p>
 map global normal <a-V> <a-P>
-# z unchanged 
-map global normal k <a-k>
-map global normal K <a-K>
-# h free but put m here for now
-map global normal h m
-map global normal H M
+# z unchanged
+# k unchanged
+# h unchanged
 # , unchanged
 map global normal . ,
 # / unchanged
